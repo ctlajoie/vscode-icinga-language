@@ -1,0 +1,112 @@
+---
+$schema: "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json"
+name: "Icinga"
+scopeName: "source.icinga"
+patterns:
+  - name: constant.numeric.icinga
+    match: \b[0-9]+(\.[0-9]+)?\b
+  - name: constant.numeric.duration.icinga
+    match: \b[0-9]+(\.[0-9]+)?(ms|s|m|h|d)\b
+  - name: constant.language.icinga
+    match: \b(true|false|null)\b
+  - name: variable.language.icinga
+    match: \b(this|vars|globals)\b
+  - name: storage.type.icinga
+    match: \b(apply|const|function|namespace|object|template|var)\b
+  - name: keyword.control.icinga
+    match: |
+      (?x)\b(
+        assign|break|continue|debugger|else|except|for|if|
+        ignore|import|include|include_recursive|include_zones|
+        return|throw|to|try|use|where|while
+      )\b
+  - name: string.quoted.double.icinga
+    begin: '"'
+    end: '"'
+    patterns:
+      - include: '#string_escape'
+      - include: '#string_macro'
+  - name: string.quoted.triple.icinga
+    begin: '\{\{\{'
+    end: '\}\}\}'
+    patterns:
+      - include: '#string_escape'
+      - include: '#string_macro'
+  - name: comment.line.double-slash.icinga
+    begin: //
+    end: \n
+  - name: comment.line.number-sign.icinga
+    begin: '#'
+    end: \n
+  - name: comment.block.icinga
+    begin: /\*
+    end: \*/
+  - name: support.class.builtin.icinga
+    match: |
+      (?x)\b(
+        ApiUser|CheckCommand|Dependency|Endpoint|EventCommand|Host|HostGroup|
+        Notification|NotificationCommand|ScheduledDowntime|Service|ServiceGroup|
+        TimePeriod|User|UserGroup|Zone|
+        Comment|Downtime|
+        ApiListener|CheckerComponent|CheckResultReader|CompatLogger|ElasticsearchWriter|
+        ExternalCommandListener|FileLogger|GelfWriter|GraphiteWriter|IcingaApplication|
+        IdoMySqlConnection|IdoPgsqlConnection|InfluxdbWriter|LiveStatusListener|
+        OpenTsdbWriter|PerfDataWriter|StatusDataWriter|SyslogLogger
+      )\b
+  - name: support.type.icinga
+    match: |
+      (?x)\b(
+        Object|Number|Boolean|String|Type|Array|Dictionary|Function|DateTime|
+        Math|Json
+      )\b
+  - name: support.function.builtin.icinga
+    match: |
+      (?x)\b(
+        regex|match|cidr_match|range|len|union|intersection|keys|string|number|bool|
+        random|log|typeof|get_time|parse_performance_data|getenv|dirname|basename|
+        path_exists|glob|glob_recursive|escape_shell_arg|escape_shell_cmd|
+        escape_create_process_arg|sleep|macro|
+        get_check_command|get_event_command|get_notification_command|get_host|
+        get_service|get_services|get_user|get_host_group|get_service_group|
+        get_user_group|get_time_period|get_object|get_objects
+      )\b
+  - name: support.variable.icinga
+    match: |
+      (?x)\b(
+        OK|Warning|Critical|Unknown|
+        Up|Down|
+        DowntimeStart|DowntimeEnd|DowntimeRemoved|Custom|Acknowledgement|
+        Problem|Recovery|FlappingStart|FlappingEnd|
+        LogDebug|LogNotice|LogInformation|LogWarning|LogCritical|
+        MatchAny|MatchAll|
+        GlobFile|GlobDirectory
+      )\b
+  - name: keyword.operator.bitwise.icinga
+    match: <<|>>|~|\^|&|\|
+  - name: keyword.operator.comparison.icinga
+    match: ==|!=|>=|<=|>|<|\s!in\s|\sin\s
+  - name: keyword.operator.assignment.icinga
+    match: =|\+=|-=|\*=|/=
+  - name: keyword.operator.arithmetic.icinga
+    match: \+|-|\*|/
+  - name: keyword.operator.logical.icinga
+    match: \&\&|\|\|
+  - name: punctuation.separator.delimiter.icinga
+    match: ','
+  - name: punctuation.accessor.icinga
+    match: \.
+  - name: meta.brace.round.icinga
+    match: \(|\)
+  - name: meta.brace.square.icinga
+    match: \[|\]
+  - name: meta.brace.curly.icinga
+    match: \{|\}
+repository:
+  string_escape:
+    patterns:
+      - name: constant.character.escape.icinga
+        match: \\(\|"|t|r|n|b|f)
+  string_macro:
+    patterns:
+      - name: string.interpolated.icinga
+        match: \$[\w\.]*\$

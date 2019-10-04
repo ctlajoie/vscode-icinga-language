@@ -1,0 +1,146 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Icinga",
+  "scopeName": "source.icinga",
+  "patterns": [
+    {
+      "name": "constant.numeric.icinga",
+      "match": "\\b[0-9]+(\\.[0-9]+)?\\b"
+    },
+    {
+      "name": "constant.numeric.duration.icinga",
+      "match": "\\b[0-9]+(\\.[0-9]+)?(ms|s|m|h|d)\\b"
+    },
+    {
+      "name": "constant.language.icinga",
+      "match": "\\b(true|false|null)\\b"
+    },
+    {
+      "name": "variable.language.icinga",
+      "match": "\\b(this|vars|globals)\\b"
+    },
+    {
+      "name": "storage.type.icinga",
+      "match": "\\b(apply|const|function|namespace|object|template|var)\\b"
+    },
+    {
+      "name": "keyword.control.icinga",
+      "match": "(?x)\\b(\n  assign|break|continue|debugger|else|except|for|if|\n  ignore|import|include|include_recursive|include_zones|\n  return|throw|to|try|use|where|while\n)\\b\n"
+    },
+    {
+      "name": "string.quoted.double.icinga",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "include": "#string_escape"
+        },
+        {
+          "include": "#string_macro"
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.triple.icinga",
+      "begin": "\\{\\{\\{",
+      "end": "\\}\\}\\}",
+      "patterns": [
+        {
+          "include": "#string_escape"
+        },
+        {
+          "include": "#string_macro"
+        }
+      ]
+    },
+    {
+      "name": "comment.line.double-slash.icinga",
+      "begin": "//",
+      "end": "\\n"
+    },
+    {
+      "name": "comment.line.number-sign.icinga",
+      "begin": "#",
+      "end": "\\n"
+    },
+    {
+      "name": "comment.block.icinga",
+      "begin": "/\\*",
+      "end": "\\*/"
+    },
+    {
+      "name": "support.class.builtin.icinga",
+      "match": "(?x)\\b(\n  ApiUser|CheckCommand|Dependency|Endpoint|EventCommand|Host|HostGroup|\n  Notification|NotificationCommand|ScheduledDowntime|Service|ServiceGroup|\n  TimePeriod|User|UserGroup|Zone|\n  Comment|Downtime|\n  ApiListener|CheckerComponent|CheckResultReader|CompatLogger|ElasticsearchWriter|\n  ExternalCommandListener|FileLogger|GelfWriter|GraphiteWriter|IcingaApplication|\n  IdoMySqlConnection|IdoPgsqlConnection|InfluxdbWriter|LiveStatusListener|\n  OpenTsdbWriter|PerfDataWriter|StatusDataWriter|SyslogLogger\n)\\b\n"
+    },
+    {
+      "name": "support.type.icinga",
+      "match": "(?x)\\b(\n  Object|Number|Boolean|String|Type|Array|Dictionary|Function|DateTime|\n  Math|Json\n)\\b\n"
+    },
+    {
+      "name": "support.function.builtin.icinga",
+      "match": "(?x)\\b(\n  regex|match|cidr_match|range|len|union|intersection|keys|string|number|bool|\n  random|log|typeof|get_time|parse_performance_data|getenv|dirname|basename|\n  path_exists|glob|glob_recursive|escape_shell_arg|escape_shell_cmd|\n  escape_create_process_arg|sleep|macro|\n  get_check_command|get_event_command|get_notification_command|get_host|\n  get_service|get_services|get_user|get_host_group|get_service_group|\n  get_user_group|get_time_period|get_object|get_objects\n)\\b\n"
+    },
+    {
+      "name": "support.variable.icinga",
+      "match": "(?x)\\b(\n  OK|Warning|Critical|Unknown|\n  Up|Down|\n  DowntimeStart|DowntimeEnd|DowntimeRemoved|Custom|Acknowledgement|\n  Problem|Recovery|FlappingStart|FlappingEnd|\n  LogDebug|LogNotice|LogInformation|LogWarning|LogCritical|\n  MatchAny|MatchAll|\n  GlobFile|GlobDirectory\n)\\b\n"
+    },
+    {
+      "name": "keyword.operator.bitwise.icinga",
+      "match": "<<|>>|~|\\^|&|\\|"
+    },
+    {
+      "name": "keyword.operator.comparison.icinga",
+      "match": "==|!=|>=|<=|>|<|\\s!in\\s|\\sin\\s"
+    },
+    {
+      "name": "keyword.operator.assignment.icinga",
+      "match": "=|\\+=|-=|\\*=|/="
+    },
+    {
+      "name": "keyword.operator.arithmetic.icinga",
+      "match": "\\+|-|\\*|/"
+    },
+    {
+      "name": "keyword.operator.logical.icinga",
+      "match": "\\&\\&|\\|\\|"
+    },
+    {
+      "name": "punctuation.separator.delimiter.icinga",
+      "match": ","
+    },
+    {
+      "name": "punctuation.accessor.icinga",
+      "match": "\\."
+    },
+    {
+      "name": "meta.brace.round.icinga",
+      "match": "\\(|\\)"
+    },
+    {
+      "name": "meta.brace.square.icinga",
+      "match": "\\[|\\]"
+    },
+    {
+      "name": "meta.brace.curly.icinga",
+      "match": "\\{|\\}"
+    }
+  ],
+  "repository": {
+    "string_escape": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.icinga",
+          "match": "\\\\(\\|\"|t|r|n|b|f)"
+        }
+      ]
+    },
+    "string_macro": {
+      "patterns": [
+        {
+          "name": "string.interpolated.icinga",
+          "match": "\\$[\\w\\.]*\\$"
+        }
+      ]
+    }
+  }
+}

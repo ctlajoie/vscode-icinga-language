@@ -1,0 +1,45 @@
+{
+  "name": "icinga-language",
+  "displayName": "Icinga Language",
+  "description": "Syntax highlighting for Icinga 2",
+  "version": "0.0.1",
+  "publisher": "chrislajoie",
+  "homepage": "https://github.com/ctlajoie/vscode-icinga-language",
+  "bugs": {
+    "url": "https://github.com/ctlajoie/vscode-icinga-language/issues"
+  },
+  "license": "SEE LICENSE IN LICENSE.md",
+  "engines": {
+    "vscode": "^1.38.0"
+  },
+  "categories": ["Programming Languages"],
+  "scripts": {
+    "yaml-json": "npx js-yaml syntaxes/icinga.tmLanguage.yaml > syntaxes/icinga.tmLanguage.json"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "icinga",
+        "aliases": [
+          "Icinga",
+          "icinga",
+          "icinga2"
+        ],
+        "extensions": [
+          ""
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "icinga",
+        "scopeName": "source.icinga",
+        "path": "./syntaxes/icinga.tmLanguage.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "js-yaml": "^3.13.1"
+  }
+}
