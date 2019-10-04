@@ -2,11 +2,15 @@
   "name": "icinga-language",
   "displayName": "Icinga Language",
   "description": "Syntax highlighting for Icinga 2",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "chrislajoie",
   "homepage": "https://github.com/ctlajoie/vscode-icinga-language",
   "bugs": {
     "url": "https://github.com/ctlajoie/vscode-icinga-language/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ctlajoie/vscode-icinga-language.git"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "engines": {
